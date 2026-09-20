@@ -1,6 +1,8 @@
 # Lean build cache
 .lake/
 
-# Local build / audit logs
+# Local build / audit logs are ignored, EXCEPT the committed evidence build.log
+# (the negation below keeps the intentionally-committed build.log trackable).
 build*.log
 axiom*.log
+!build.log

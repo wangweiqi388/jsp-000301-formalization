@@ -19,39 +19,48 @@ m₀ = 12167 = 23³ — the classical counterexample. All arithmetic is recomput
 (`norm_num`, `ring`, `linarith`, `omega`, `positivity`, `linear_combination`) at compile time —
 no external assertions, no `#eval`, no `sorry` / `admit`.
 
+## Axiom dependencies (disclosed)
+
+Both target theorems depend only on the **three standard classical Lean axioms**:
+
+```
+propext, Classical.choice, Quot.sound
+```
+
+These are the ordinary axioms used throughout Mathlib (propositional extensionality, the axiom of
+choice, quotient soundness). Their use is standard, permitted, and **not** disqualifying. There is
+no `sorry`, no `admit`, and no added unproved assumption. See [`axioms_audit.md`](axioms_audit.md)
+for the verbatim `#print axioms` output and the reproducible audit procedure.
+
 ## Repository contents
 
 | File | Purpose |
 | --- | --- |
-| `jsp000301proof.lean` | The proof (root module `JSP000301`). |
+| `jsp000301proof.lean` | The proof (root module `JSP000301`). Pinned at proof commit `9e0e773…`. |
 | `lakefile.lean` / `lake-manifest.json` / `lean-toolchain.toml` | Lake package + pinned Mathlib `v4.34.0` + Lean `v4.34.0`. |
 | `formalization.yaml` | Authorship declaration (formalizer `wangweiqi388`, AI assistant WorkBuddy). |
 | `statement.yaml` | Formal statement record (definitions match the Lean source verbatim). |
 | `record.yaml` | Structured verification record (toolchain, theorems, axiom set, checkers, attribution). |
-| `axioms_audit.md` | `#print axioms` command and **actual** output for each target theorem. |
-| `build.log` | Clean `lake build` output (8925 jobs, `BUILD_EXIT=0`). |
+| `axioms_audit.md` | `#print axioms` command, actual output, and the reproducible audit procedure. |
+| `build.log` | Clean `lake build` output (8925 jobs, `BUILD_EXIT=0`) — committed intentionally. |
+| `run_print_axioms.sh` | One-command reproducible axiom audit (appends then restores the proof file). |
+| `verify_m1m4.py` | Independent numerical cross-check of four explicit counterexample pairs (deterministic). |
 
 ## Build & reproduce
 
 ```bash
 git clone https://github.com/wangweiqi388/jsp-000301-formalization
 cd jsp-000301-formalization
+git checkout 9e0e773dd0459f6ab56be14920522ef9fdc8ed03   # proof commit
 lake build          # clean build of the default target (8925 jobs)
+
+bash run_print_axioms.sh     # axiom audit -> [propext, Classical.choice, Quot.sound]
+python verify_m1m4.py        # independent numerical cross-check -> ALL PASS
 ```
 
-Axiom audit (see `axioms_audit.md` for the actual output):
-
-```lean
-#print axioms JSP000301.erdos_365_witness
-#print axioms JSP000301.counterexample_family
-```
-
-> Both theorems depend only on the standard classical axioms `[propext, Classical.choice, Quot.sound]`
-> — permitted and not disqualifying.
-
-> Note: `.gitignore` excludes `build*.log` / `axiom*.log` (to avoid committing stray local logs).
-> The committed evidence `build.log` is intentional — if you add it via git CLI use
-> `git add -f build.log`; uploading via the GitHub web UI is unaffected.
+> Note on `build.log`: `.gitignore` ignores `build*.log` (to avoid committing stray local logs), but
+> an explicit `!build.log` exception keeps this intentionally-committed evidence log trackable, so its
+> presence in the repository is transparent and not an oversight.
 
 ## Attribution
 
@@ -66,6 +75,6 @@ Axiom audit (see `axioms_audit.md` for the actual output):
 - Proof commit: `9e0e773dd0459f6ab56be14920522ef9fdc8ed03` (branch `main`).
 - Toolchain: Lean `leanprover/lean4:v4.34.0`; Mathlib commit
   `5ed2965256430c3649e86755f9576b54eca72435` (`v4.34.0`).
-- Checkers: `lake build` (pass), `#print axioms` audit (pass), independent numerical check
-  `verify_m1m4.py` (pass for m₁–m₄).
+- Checkers: `lake build` (pass), `#print axioms` audit (pass), independent numerical cross-check
+  `verify_m1m4.py` (pass).
 - See `record.yaml`, `statement.yaml`, `axioms_audit.md`, `build.log` for the full evidence.

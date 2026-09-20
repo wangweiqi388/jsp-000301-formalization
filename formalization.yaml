@@ -1,6 +1,5 @@
-# formalization.yaml — 证明仓署名声明（硬要求：account ↔ author 须与仓库属主一致）
-# Proof-repository authorship declaration.
-# Hard requirement: account ↔ author must match the repository owner (wangweiqi388).
+# formalization.yaml — Proof-repository authorship declaration.
+# Hard requirement: account <-> author must match the repository owner (wangweiqi388).
 
 formalizer:
   account: wangweiqi388
