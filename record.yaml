@@ -1,0 +1,69 @@
+# record.yaml — JSP-000301 / Erdős #365 形式化证否（验证记录，证据仓版本）
+# 描述 proof commit = 9e0e773dd0459f6ab56be14920522ef9fdc8ed03。
+# theorems[].axioms 已用本机 `lake env lean` 实跑 `#print axioms` 取得真实值（见 axioms_audit.md）。
+
+repository: "https://github.com/wangweiqi388/jsp-000301-formalization"
+commit: "9e0e773dd0459f6ab56be14920522ef9fdc8ed03"
+
+toolchain:
+  language: "Lean"
+  language_version: "v4.34.0"
+  library: "mathlib"
+  library_commit: "5ed2965256430c3649e86755f9576b54eca72435"
+  meets_minimum_safe_version: true
+
+theorems:
+  - name: "erdos_365_witness"
+    axioms: [propext, Classical.choice, Quot.sound]
+    clean: true
+  - name: "counterexample_family"
+    axioms: [propext, Classical.choice, Quot.sound]
+    clean: true
+
+statement_comparison:
+  statement_id: "STMT-jsp-000301-disproof-v1"
+  theorem_name: "erdos_365_witness"
+  result: "equivalent"
+  basis: "The formalized ∃ m, IsPowerful m ∧ IsPowerful (m+1) ∧ ¬IsSquare m ∧ ¬IsSquare (m+1) exactly negates the original yes/no question; it matches the Golomb 1970 disproof (a complete solution under the award rules, which accept a disproof as a complete solution)."
+  performed_by: "wangweiqi388"
+  performed_at: "2026-09-20"
+
+checkers:
+  - name: "lean-lake-build"
+    version: "v4.34.0"
+    current_release: true
+    result: "pass"
+  - name: "lean-print-axioms"
+    version: "v4.34.0"
+    current_release: true
+    result: "pass"
+  - name: "independent-numerical-verification"
+    version: "verify_m1m4.py"
+    current_release: true
+    result: "pass"
+
+environment:
+  arch: "x86_64"
+  image: "leanprover/lean4:v4.34.0"
+
+sandbox:
+  network_disabled: true
+  prebuilt_artifacts_ignored: true
+  limits:
+    time: "300s"
+    memory: "8GiB"
+  unprivileged_user: true
+
+attribution:
+  proof_route: "self (repository owner wangweiqi388)"
+  third_party: true
+  note_en: "The underlying mathematical result (existence of consecutive powerful non-square pairs) was established by Golomb 1970, with the Pell-family recurrence from Walker 1976 / Wroblewski. This submission contributes the Lean 4 + Mathlib formalization and explicit machine-checked verification, separated from the mathematical discovery per the project attribution rules (\"mathematical discovery and formalization can be separated\")."
+
+artifacts:
+  build_log:
+    archive: "build.log"
+    sha256: "2bda604b01889869bf866ecc748cb42fff5bfbd7d9541ad87cd1244cc3999f75"
+    bytes: 99
+
+performed_by: "wangweiqi388"
+performed_at: "2026-09-20"
