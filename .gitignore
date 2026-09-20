@@ -1,0 +1,6 @@
+# Lean build cache
+.lake/
+
+# Local build / audit logs
+build*.log
+axiom*.log
