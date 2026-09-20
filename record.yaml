@@ -1,6 +1,6 @@
-# record.yaml — JSP-000301 / Erdős #365 形式化证否（验证记录，证据仓版本）
-# 描述 proof commit = 9e0e773dd0459f6ab56be14920522ef9fdc8ed03。
-# theorems[].axioms 已用本机 `lake env lean` 实跑 `#print axioms` 取得真实值（见 axioms_audit.md）。
+# record.yaml — JSP-000301 / Erdős #365 formalized disproof (verification record, evidence-repo version)
+# Describes proof commit = 9e0e773dd0459f6ab56be14920522ef9fdc8ed03.
+# theorems[].axioms were measured locally via `lake env lean` running `#print axioms` (see axioms_audit.md).
 
 repository: "https://github.com/wangweiqi388/jsp-000301-formalization"
 commit: "9e0e773dd0459f6ab56be14920522ef9fdc8ed03"
