@@ -44,15 +44,18 @@ checkers:
 
 environment:
   arch: "x86_64"
-  image: "leanprover/lean4:v4.34.0"
+  image: "not containerized — local machine, elan-managed leanprover/lean4:v4.34.0"
 
+# Verification ran on the owner's local machine (network available, used to fetch the pinned
+# Mathlib cache before the offline build/audit), NOT in an isolated sandbox. The optional
+# lean-verify skill (isolated, network-disabled) was not run.
 sandbox:
-  network_disabled: true
-  prebuilt_artifacts_ignored: true
+  network_disabled: false
+  prebuilt_artifacts_ignored: false
   limits:
-    time: "300s"
-    memory: "8GiB"
-  unprivileged_user: true
+    time: "not time-boxed (local build completed in ~246 s)"
+    memory: "not limited (local machine)"
+  unprivileged_user: false
 
 attribution:
   proof_route: "self (repository owner wangweiqi388)"

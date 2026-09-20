@@ -1,6 +1,6 @@
 # statement.yaml — JSP-000301 / Erdős #365 formalized disproof (formal statement, evidence-repo version)
 # The definitions below match the actual code in jsp000301proof.lean verbatim (L42–L46).
-# Note: authorship.signatories requires at least 2 GitHub handles (schema hard minItems: 2).
+# NOTE: the awards repository publishes no official schema or CI for this file; it is reviewed manually.
 
 id: STMT-jsp-000301-disproof-v1
 status: active
@@ -30,6 +30,5 @@ statement:
 
 authorship:
   signatories:
-    - "wangweiqi388"                       # GitHub handle (primary signatory, proof-repository owner)
-    - "onewitch"                           # GitHub handle (second signatory, the same individual's second account)
+    - "wangweiqi388"                       # the sole Lean formalization author (proof-repository owner)
   issued_at: "2026-09-20"                  # ISO date YYYY-MM-DD
