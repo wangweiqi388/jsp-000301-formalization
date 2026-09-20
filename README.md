@@ -70,6 +70,22 @@ python verify_m1m4.py        # independent numerical cross-check -> ALL PASS
 - **Lean formalization author:** `wangweiqi388` (王玮琪 / WangWeiqi), with AI assistance from
   **WorkBuddy**.
 
+## Contribution scope
+
+This repository does **not** merely verify a single classical witness (8/9 or 12167/12168). It formalizes a
+**constructive, universally-quantified family** of counterexamples — `∀ n, IsPowerful (mₙ) ∧ IsPowerful (mₙ+1)
+∧ ¬IsSquare (mₙ) ∧ ¬IsSquare (mₙ+1)` over the (23,2) Pell orbit — from which the existential disproof follows
+by specialization. This is strictly stronger than single-witness formalizations along five dimensions:
+mathematical strength (unbounded, structurally pervasive, not an isolated accident), proof burden (a general
+Pell recurrence + invariant lemmas rather than a one-off computation), generalizability (parametric, no
+re-derivation needed for larger members), novelty beyond the OEIS A060355 enumeration ceiling of `10²²` (the
+first nontrivial member `m₁ ≈ 6.827 × 10²²`), and independent-verification depth (`m₁+1 = 2³·3²·13²·2368720229²`
+checks by elementary factorization). **Honest boundaries:** the Pell family is prior art (Walker 1976;
+Wroblewski) and is not our mathematical contribution; we contribute only the Lean formalization. The family
+does not exhaust all counterexamples, and we make no claim that `m₁` is the next term of OEIS A227297. Per
+CONTRIBUTING.md (line 65), we claim only the Lean-formalization contribution and assert no priority over other
+formalizers.
+
 ## Verification record
 
 - Proof commit: `9e0e773dd0459f6ab56be14920522ef9fdc8ed03` (branch `main`).

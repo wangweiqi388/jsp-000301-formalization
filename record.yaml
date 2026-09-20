@@ -24,7 +24,7 @@ statement_comparison:
   statement_id: "STMT-jsp-000301-disproof-v1"
   theorem_name: "erdos_365_witness"
   result: "equivalent"
-  basis: "The formalized ∃ m, IsPowerful m ∧ IsPowerful (m+1) ∧ ¬IsSquare m ∧ ¬IsSquare (m+1) exactly negates the original yes/no question; it matches the Golomb 1970 disproof (a complete solution under the award rules, which accept a disproof as a complete solution)."
+  basis: "The formalized ∃ m, IsPowerful m ∧ IsPowerful (m+1) ∧ ¬IsSquare m ∧ ¬IsSquare (m+1) exactly negates the original yes/no question; it matches the Golomb 1970 disproof (a complete solution under the award rules, which accept a disproof as a complete solution). The formalized statement is in fact a universally quantified family ∀n, IsPowerful (m n) ∧ IsPowerful (m n+1) ∧ ¬IsSquare (m n) ∧ ¬IsSquare (m n+1) (the (23,2) Pell orbit, m n = 23³·Xₙ², m n+1 = 2³·Yₙ², with invariant 8·Yₙ² − 12167·Xₙ² = 1), from which the existential negation follows by specialization to any n (e.g. n = 0 recovers the 12167 witness); this is strictly stronger than a single-witness formalization. The Pell family is prior art (Walker 1976; Wroblewski) — this submission contributes only its Lean formalization, not the mathematics."
   performed_by: "wangweiqi388"
   performed_at: "2026-09-20"
 
